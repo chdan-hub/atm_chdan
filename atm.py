@@ -16,3 +16,5 @@ while True:
 
     if num == '4': #4번은 종료기능
         break
+
+print(f"서비스를 종료합니다. 고객님의 현재 잔액은 {balance}원 입니다.")
