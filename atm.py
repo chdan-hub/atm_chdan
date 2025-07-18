@@ -17,13 +17,16 @@ while True:
     if num == '4': #4번은 종료기능
         break
 
-    if num == '1': #입금 기능 구현 -> feat/deposit 브랜치에서 작업ㅂ
+    if num == '1': #입금 기능 구현 -> feat/deposit 브랜치에서 작업
         deposit_amout = int(input('입금하실 금액을 입력해주세요: ')) # str -> int
         balance += deposit_amout # balance = balance + deposit_amout 와 동일
         print(f'입금하신 금액은 {deposit_amout}원 입니다, 현재 잔액은 {balance}원 입니다.')
 
     if num == '2':
-        pass
+        withdraw_amout = int(input('출금하실 금액을 입력해 주세요: '))
+        withdraw_amout = min(balance, withdraw_amout) # 원금초과하면 자동으로 전액 출금
+        balance -= withdraw_amout
+        print(f'출금하신 금액은 {withdraw_amout}원 입니다, 현재 잔액은 {balance}원 입니다.')
 
     if num == '3':
         pass
