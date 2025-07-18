@@ -9,6 +9,7 @@
 # 사용자 목적을 입력받는 기능이 있어야함
 balance = 50000
 
+receipts = []
 
 while True:
     num = input("어서오십시오. 사용하실 기능의 번호를 선택해주십시오.\n"
@@ -21,14 +22,23 @@ while True:
         deposit_amout = int(input('입금하실 금액을 입력해주세요: ')) # str -> int
         balance += deposit_amout # balance = balance + deposit_amout 와 동일
         print(f'입금하신 금액은 {deposit_amout}원 입니다, 현재 잔액은 {balance}원 입니다.')
+        # 보안!!
+        receipts.append(('입금', deposit_amout, balance))
 
     if num == '2':
         withdraw_amout = int(input('출금하실 금액을 입력해 주세요: '))
         withdraw_amout = min(balance, withdraw_amout) # 원금초과하면 자동으로 전액 출금
         balance -= withdraw_amout
         print(f'출금하신 금액은 {withdraw_amout}원 입니다, 현재 잔액은 {balance}원 입니다.')
+        receipts.append(('출금', withdraw_amout, balance))
+
 
     if num == '3':
-        pass
+        if receipts:
+
+            for i in receipts:
+                print(f'{i[0]}: {i[1]}원 | 잔액: {i[2]}원')
+        else:
+            print("영수증 내역이 없습니다.")
 
 print(f"서비스를 종료합니다. 고객님의 현재 잔액은 {balance}원 입니다.")
